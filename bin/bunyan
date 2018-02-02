@@ -889,10 +889,11 @@ function emitRecord(rec, line, opts, stylize) {
                 }).join('\n');
             }
             var s = format('%s %s HTTP/%s%s', req.method,
-                req.url,
+                req.url || req.path,
                 req.httpVersion || '1.1',
                 headers
             );
+            delete req.path;
             delete req.url;
             delete req.method;
             delete req.httpVersion;
